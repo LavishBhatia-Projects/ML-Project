@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Spam Detection</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script>
+        function showSpinner() {
+            document.getElementById('spinner').style.display = 'block';
+        }
+
+        function hideResult() {
+            const resultContainer = document.getElementById('result');
+            if (resultContainer) {
+                setTimeout(() => {
+                    resultContainer.style.display = 'none';
+                }, 5000); // Hide after 5 seconds
+            }
+        }
+        
+        // Auto-resize textarea
+        function autoResize() {
+            this.style.height = 'auto'; // Reset height
+            this.style.height = this.scrollHeight + 'px'; // Set to scrollHeight
+        }
+    </script>
+</head>
+<body onload="hideResult()">
+    <div class="main-container">
+        <div class="content-box">
+            <h1>SMS Spam Detection</h1>
+
+            <!-- Flash messages section -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                <div class="flash-messages">
+                  {% for category, message in messages %}
+                    <div class="alert {{ category }}">
+                        {{ message }}
+                        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                    </div>
+                  {% endfor %}
+                </div>
+              {% endif %}
+            {% endwith %}
+
+            <!-- Prediction Form -->
+            <form action="/predict" method="POST" onsubmit="showSpinner()">
+                <label for="message">Enter SMS message:</label>
+                <textarea name="message" id="message" rows="4" oninput="autoResize.call(this);" required></textarea>
+                <button type="submit" class="submit-btn">Predict</button>
+                <div id="spinner" style="display: none;" class="spinner"></div>
+            </form>
+
+            <!-- Prediction Result Section (Only displays if prediction_text is available) -->
+            {% if prediction_text %}
+            <div id="result" class="result">
+                {% if "Spam" in prediction_text %}
+                    <div class="prediction spam">
+                        <span class="icon">&#9888;</span> <!-- Warning icon -->
+                        <span>{{ prediction_text }}</span>
+                        <p class="explanation">This message appears to be spam and may contain unwanted or promotional content.</p>
+                    </div>
+                {% else %}
+                    <div class="prediction ham">
+                        <span class="icon">&#10003;</span> <!-- Checkmark icon -->
+                        <span>{{ prediction_text }}</span>
+                        <p class="explanation">This message appears to be legitimate (not spam).</p>
+                    </div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

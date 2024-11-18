@@ -1,0 +1,152 @@
+/* Reset basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('https://i.pinimg.com/originals/79/84/ef/7984efca87cd116e045fe4bf78fdc399.gif'); /* Background image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #333;
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 40px;
+}
+
+.content-box {
+    max-width: 500px; /* Maximum width of content box */
+    width: 100%; /* Full width on smaller screens */
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.9); /* Slightly transparent white */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    text-align: center; /* Center text */
+}
+
+h1 {
+    font-size: 2em; /* Heading size */
+    margin-bottom: 20px; /* Space below heading */
+}
+
+label {
+    font-size: 1em; /* Label size */
+    color: #555; /* Label color */
+}
+
+textarea {
+    padding: 10px; /* Inner padding */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners */
+    resize: none; /* Disable manual resizing */
+    font-size: 1em; /* Font size */
+    width: calc(100% - 22px); /* Full width minus padding/border for proper sizing */
+    min-height: 100px; /* Minimum height for better usability */
+}
+
+textarea::placeholder {
+    color: #aaa; /* Placeholder color */
+}
+
+textarea:focus {
+    border-color: #28a745; /* Green border on focus */
+    outline: none; /* Remove outline */
+}
+
+.submit-btn {
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745; /* Green button color */
+    color: white; /* Button text color */
+    font-weight: bold; /* Bold text */
+    font-size: 1em; /* Font size for button text */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition effects */
+}
+
+.submit-btn:hover {
+   background-color: #218838; /* Darker green on hover */
+   transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+.result {
+   margin-top: 20px; 
+   font-size: 1.2em;
+   color: #333; 
+   animation: fadeIn 0.5s ease-in-out; /* Fade-in animation for result display */
+}
+
+/* Flash Messages Styles */
+.flash-messages {
+   margin-bottom: 15px; 
+}
+
+.alert {
+   padding: 10px; 
+   border-radius: 5px; 
+   margin-bottom: 10px; 
+   font-weight: bold; 
+   text-align:center ;  
+   display:flex ;  
+   justify-content:center ;  
+   align-items:center ;  
+}
+
+/* Spinner Styles */
+.spinner {
+   border :4px solid #f3f3f3; 
+   border-top :4px solid #3498db; 
+   border-radius :50%; 
+   width :30px; 
+   height :30px; 
+   animation :spin 1s linear infinite; 
+   margin-top :15px ; /* Center spinner vertically with margin above it*/
+}
+
+@keyframes spin {
+   from { transform :rotate(0deg); }
+   to { transform :rotate(360deg); }
+}
+
+/* Prediction Styles */
+.prediction {
+   display:flex ;  
+   align-items:center ;  
+   gap :10px ;  
+   font-size :1.2em ;  
+   font-weight:bold ;  
+   padding :10px ;  
+   border-radius :8px ;  
+}
+
+.prediction.ham {
+   color:#2ecc71 ;  
+   background-color:#e8f5e9 ;  
+}
+
+.prediction.spam {
+   color:#e74c3c ;  
+   background-color:#fdecea ;  
+}
+
+/* Icon Styling */
+.icon {
+   font-size :1.5em ;  
+}
+
+/* Explanation Text Styling */
+.explanation {
+   font-size :0.9em ;  
+}
